@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from app.dns.record_data import RecordClass, RecordType, name
+from app.dns.record_data import RecordClass, RecordType
 
 
 @dataclass
