@@ -27,7 +27,7 @@ class Question:
     def from_bytes(cls, received_body: bytes):
         reader = BytesIO(received_body)
         url = cls.decode_name_simple(reader)
-
+        print('url:', url)
         split_url = url.split('.')
 
         labels = b''.join([bytes([len(label)]) + bytes(label, 'utf-8') for label in split_url])
@@ -43,5 +43,4 @@ class Question:
         parts = []
         while (length := reader.read(1)[0]) != 0:
             parts.append(reader.read(length))
-        print('parts: ', parts)
-        return '.'.join(str(parts))
+        return b'.'.join(parts)
