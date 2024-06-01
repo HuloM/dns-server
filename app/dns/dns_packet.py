@@ -29,13 +29,13 @@ def construct_dns(received_header: bytes, received_body: bytes):
     question = Question.from_bytes(received_body)
     print('test')
     dns_pkt += Question(url          = question.url,
-                        record_type  = question.record_type,
-                        record_class = question.record_class
+                        record_type  = RecordType(question.record_type),
+                        record_class = RecordClass(question.record_class)
                         ).construct_question()
     print('test2')
     dns_pkt += Answer(url          = question.url,
-                      record_type  = question.record_type,
-                      record_class = question.record_class,
+                      record_type  = RecordType(question.record_type),
+                      record_class = RecordClass(question.record_class),
                       ttl          = 60,
                       length       = 4,
                       rdata        = '8.8.8.8'
