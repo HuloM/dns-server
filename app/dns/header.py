@@ -7,6 +7,11 @@ class OpCode(int, Enum):
     QUERY   = 0 # a standard query (QUERY)
     I_QUERY = 1 # an inverse query (IQUERY)
     STATUS  = 2 # a server status request (STATUS)
+    FUTURE  = 3
+
+    @classmethod
+    def _missing_(cls, value):
+        return cls.FUTURE
 
 
 class RCode(int, Enum):
