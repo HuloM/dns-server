@@ -12,7 +12,7 @@ def main():
         try:
             buf, source = udp_socket.recvfrom(512)
 
-            response = dns_packet.construct_dns()
+            response = dns_packet.construct_dns('codecrafters.io')
 
             udp_socket.sendto(response, source)
         except Exception as e:
