@@ -7,7 +7,7 @@ from app.dns.record_data import RecordClass, RecordType
 def construct_dns(query_url: str, received: bytes):
     dns_pkt = b''
 
-    header = Header().from_bytes(received)
+    header = Header.from_bytes(received)
     # preset values for testing
     dns_pkt += Header(
         id       = header.id,
