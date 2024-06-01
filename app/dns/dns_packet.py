@@ -38,7 +38,7 @@ def construct_dns(received_header: bytes, received_body: bytes):
                       record_class = RecordClass(question.record_class),
                       ttl          = 60,
                       length       = 4,
-                      rdata        = '8.8.8.8'
+                      rdata        = '1.2.3.4'
                       ).construct_answer()
 
     return dns_pkt
