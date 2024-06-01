@@ -28,7 +28,7 @@ class Question:
         reader = BytesIO(received_body)
         url = cls.decode_name_simple(reader)
         print('url:', url)
-        split_url = url.split('.')
+        split_url = url.decode('utf-8').split('.')
 
         labels = b''.join([bytes([len(label)]) + bytes(label, 'utf-8') for label in split_url])
 
@@ -39,7 +39,7 @@ class Question:
         return cls(labels, record_type, record_class)
 
     @staticmethod
-    def decode_name_simple(reader: BytesIO) -> str:
+    def decode_name_simple(reader: BytesIO) -> bytes:
         parts = []
         while (length := reader.read(1)[0]) != 0:
             parts.append(reader.read(length))
