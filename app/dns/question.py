@@ -27,7 +27,7 @@ class Question:
     def from_bytes(cls, received_body: bytes):
         reader = BytesIO(received_body)
         url = cls.decode_name_simple(reader)
-        print('url:', url)
+
         split_url = url.decode('utf-8').split('.')
 
         labels = b''.join([bytes([len(label)]) + bytes(label, 'utf-8') for label in split_url])
@@ -35,7 +35,6 @@ class Question:
         data = reader.read(4)
         record_type, record_class = struct.unpack('>HH', data)
 
-        print(labels)
         return cls(labels, record_type, record_class)
 
     @staticmethod
