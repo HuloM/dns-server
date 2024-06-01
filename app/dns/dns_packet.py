@@ -27,6 +27,7 @@ def construct_dns(received_header: bytes, received_body: bytes):
     ).to_bytes()
 
     question = Question.from_bytes(received_body)
+    print('test')
     dns_pkt += Question(url          = question.url,
                         record_type  = question.record_type,
                         record_class = question.record_class
