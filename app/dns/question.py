@@ -16,10 +16,10 @@ class Question:
 
     def construct_question(self):
         self.question = (self.url
+                         + b'\x00'
                          + self.record_type.to_bytes(2, byteorder='big')
                          + self.record_class.to_bytes(2, byteorder='big')
                          )
-        self.question += b'\x00'
 
         return self.question
 
