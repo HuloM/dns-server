@@ -15,7 +15,10 @@ class Question:
     question: bytes = b''
 
     def construct_question(self):
-        self.question = name(self.url, self.record_type, self.record_class)
+        self.question = (self.url
+                         + self.record_type.to_bytes(2, byteorder='big')
+                         + self.record_class.to_bytes(2, byteorder='big')
+                         )
 
         return self.question
 

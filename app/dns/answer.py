@@ -28,7 +28,7 @@ class Answer:
     +--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
     """
 
-    url: str
+    url: bytes
 
     record_type: RecordType
 
@@ -43,7 +43,10 @@ class Answer:
     answer: bytes = b''
 
     def construct_answer(self):
-        self.answer = name(self.url, self.record_type, self.record_class)
+        self.answer = (self.url
+                       + self.record_type.to_bytes(2, byteorder='big')
+                       + self.record_class.to_bytes(2, byteorder='big')
+                       )
 
         self.answer += self.ttl.to_bytes(4, byteorder='big')
         self.answer += self.length.to_bytes(2, byteorder='big')
