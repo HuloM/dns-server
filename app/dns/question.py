@@ -43,4 +43,4 @@ class Question:
         parts = []
         while (length := reader.read(1)[0]) != 0:
             parts.append(reader.read(length))
-        return '.'.join(parts)
+        return '.'.join(str(parts))
