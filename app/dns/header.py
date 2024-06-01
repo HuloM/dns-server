@@ -181,3 +181,23 @@ class Header:
             self.ns_count,
             self.ar_count,
             )
+
+    @classmethod
+    def from_bytes(cls, data):
+        id, flags, qd_count, an_count, ns_count, ar_count = struct.unpack(">HHHHHH", data)
+
+        return cls(
+            id,
+            flags >> 15,
+            flags >> 11,
+            flags >> 10,
+            flags >> 9,
+            flags >> 8,
+            flags >> 7,
+            flags >> 4,
+            flags,
+            qd_count,
+            an_count,
+            ns_count,
+            ar_count
+            )

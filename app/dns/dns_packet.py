@@ -4,20 +4,21 @@ from app.dns.answer import Answer
 from app.dns.record_data import RecordClass, RecordType
 
 
-def construct_dns(query_url: str):
+def construct_dns(query_url: str, received: bytes):
     dns_pkt = b''
 
+    header = Header().from_bytes(received)
     # preset values for testing
     dns_pkt += Header(
-        id       = 1234,
+        id       = header.id,
         qr       = True,
-        op_code  = OpCode.QUERY,
+        op_code  = header.op_code,
         aa       = False,
         tc       = False,
-        rd       = False,
+        rd       = header.rd,
         ra       = False,
         z        = 0,
-        r_code   = RCode.NO_ERROR,
+        r_code   = RCode.NO_ERROR if header.op_code == 0 else RCode.NOT_IMPL,
         qd_count = 1,
         an_count = 1,
         ns_count = 0,
