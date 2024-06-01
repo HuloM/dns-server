@@ -35,15 +35,9 @@ def name(url, record_type, record_class) -> bytes:
     question = b''
     split_url = url.split('.')
 
-    site_len = len(split_url[0])
-    question += site_len.to_bytes(1, byteorder='big')
+    labels = b''.join([bytes([len(label)]) + bytes(label, 'utf-8') for label in split_url])
 
-    question += bytes(split_url[0], 'utf-8')
-
-    domain_len = len(split_url[1])
-    question += domain_len.to_bytes(1, byteorder='big')
-
-    question += bytes(split_url[1], 'utf-8')
+    question += labels
 
     question += b'\x00'
 

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from app.dns.record_data import RecordClass, RecordType, name
-
+from io import BytesIO
 
 @dataclass
 class Question:
@@ -20,4 +20,5 @@ class Question:
 
     @classmethod
     def from_bytes(cls, received_body):
-        pass
+        reader = BytesIO(received_body)
+        print(reader.read(4))
