@@ -27,11 +27,16 @@ class Question:
     def from_bytes(cls, received_body: bytes):
         reader = BytesIO(received_body)
         url = cls.decode_name_simple(reader)
+
+        split_url = url.split('.')
+
+        labels = b''.join([bytes([len(label)]) + bytes(label, 'utf-8') for label in split_url])
+
         data = reader.read(4)
         record_type, record_class = struct.unpack('>HH', data)
 
-        print(url)
-        return cls(url, record_type, record_class)
+        print(labels)
+        return cls(labels, record_type, record_class)
 
     @staticmethod
     def decode_name_simple(reader: BytesIO) -> bytes:

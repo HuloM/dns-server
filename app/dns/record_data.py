@@ -29,3 +29,19 @@ class RecordClass(int, Enum):
     CS = 2 # the CSNET class (Obsolete - used only for examples in some obsolete RFCs)
     CH = 3 # the CHAOS class
     HS = 4 # Hesiod [Dyer 87]
+
+
+def name(url, record_type, record_class) -> bytes:
+    question = b''
+    split_url = url.split('.')
+
+    labels = b''.join([bytes([len(label)]) + bytes(label, 'utf-8') for label in split_url])
+
+    question += labels
+
+    question += b'\x00'
+
+    question += record_type.to_bytes(2, byteorder='big')
+    question += record_class.to_bytes(2, byteorder='big')
+
+    return question
