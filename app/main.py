@@ -1,5 +1,5 @@
 import socket
-from app.DNS import dns_packet
+from app.dns import dns_packet
 
 
 def main():

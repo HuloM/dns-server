@@ -1,4 +1,4 @@
-from header import Header, OpCode, RCode
+from app.dns.header import Header, OpCode, RCode
 
 
 def construct_dns():
