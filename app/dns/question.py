@@ -39,8 +39,8 @@ class Question:
         return cls(labels, record_type, record_class)
 
     @staticmethod
-    def decode_name_simple(reader: BytesIO) -> bytes:
+    def decode_name_simple(reader: BytesIO) -> str:
         parts = []
         while (length := reader.read(1)[0]) != 0:
             parts.append(reader.read(length))
-        return b'.'.join(parts)
+        return '.'.join(parts)
