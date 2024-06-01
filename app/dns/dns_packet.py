@@ -4,12 +4,11 @@ from app.dns.answer import Answer
 from app.dns.record_data import RecordClass, RecordType
 
 
-def construct_dns(query_url: str, received: bytes):
+def construct_dns(received_header: bytes, received_body: bytes):
     dns_pkt = b''
 
-    header = Header.from_bytes(received)
+    header = Header.from_bytes(received_header)
 
-    print(header)
     # preset values for testing
     dns_pkt += Header(
         id       = header.id,
@@ -27,6 +26,9 @@ def construct_dns(query_url: str, received: bytes):
         ar_count = 0,
     ).to_bytes()
 
+    question = Question.from_bytes(received_body)
+    print(question)
+    query_url = 'google.com'
     dns_pkt += Question(url          = query_url,
                         record_type  = RecordType.A,
                         record_class = RecordClass.IN

@@ -13,8 +13,8 @@ def main():
             buf, source = udp_socket.recvfrom(512)
 
             received_header = buf[:12]
-
-            response = dns_packet.construct_dns('codecrafters.io', received_header)
+            received_body = buf[12:]
+            response = dns_packet.construct_dns(received_header, received_body)
 
             udp_socket.sendto(response, source)
         except Exception as e:

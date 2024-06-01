@@ -17,3 +17,7 @@ class Question:
         self.question = name(self.url, self.record_type, self.record_class)
 
         return self.question
+
+    @classmethod
+    def from_bytes(cls, received_body):
+        pass
