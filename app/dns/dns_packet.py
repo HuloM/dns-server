@@ -40,5 +40,5 @@ def construct_dns(received_header: bytes, received_body: bytes):
                       length       = 4,
                       rdata        = '8.8.8.8'
                       ).construct_answer()
-
+    print(dns_pkt)
     return dns_pkt
