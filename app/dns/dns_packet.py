@@ -27,16 +27,14 @@ def construct_dns(received_header: bytes, received_body: bytes):
     ).to_bytes()
 
     question = Question.from_bytes(received_body)
-    # print(question)
-    query_url = 'google.com'
-    dns_pkt += Question(url          = query_url,
-                        record_type  = RecordType.A,
-                        record_class = RecordClass.IN
+    dns_pkt += Question(url          = question.url,
+                        record_type  = question.record_type,
+                        record_class = question.record_class
                         ).construct_question()
 
-    dns_pkt += Answer(url          = query_url,
-                      record_type  = RecordType.A,
-                      record_class = RecordClass.IN,
+    dns_pkt += Answer(url          = question.url,
+                      record_type  = question.record_type,
+                      record_class = question.record_class,
                       ttl          = 60,
                       length       = 4,
                       rdata        = '8.8.8.8'
