@@ -1,10 +1,9 @@
 import socket
-from app import dns_packet
+from app.DNS import dns_packet
 
 
 def main():
     # Uncomment this block to pass the first stage
-
 
     udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     udp_socket.bind(("127.0.0.1", 2053))
