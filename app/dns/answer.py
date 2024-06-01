@@ -44,6 +44,7 @@ class Answer:
 
     def construct_answer(self):
         self.answer = (self.url
+                       + b'\x00'
                        + self.record_type.to_bytes(2, byteorder='big')
                        + self.record_class.to_bytes(2, byteorder='big')
                        )
