@@ -32,7 +32,7 @@ def construct_dns(received_header: bytes, received_body: bytes):
                         record_type  = RecordType(question.record_type),
                         record_class = RecordClass(question.record_class)
                         ).construct_question()
-    print(dns_pkt)
+
     dns_pkt += Answer(url          = question.url,
                       record_type  = RecordType(question.record_type),
                       record_class = RecordClass(question.record_class),
