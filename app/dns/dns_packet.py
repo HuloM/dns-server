@@ -8,6 +8,8 @@ def construct_dns(query_url: str, received: bytes):
     dns_pkt = b''
 
     header = Header.from_bytes(received)
+
+    print(header)
     # preset values for testing
     dns_pkt += Header(
         id       = header.id,
