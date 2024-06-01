@@ -1,5 +1,5 @@
 import socket
-from dns_packet import construct_dns
+from dns import dns_packet
 
 
 def main():
@@ -12,7 +12,7 @@ def main():
         try:
             buf, source = udp_socket.recvfrom(512)
 
-            response = construct_dns()
+            response = dns_packet.construct_dns()
 
             udp_socket.sendto(response, source)
         except Exception as e:
