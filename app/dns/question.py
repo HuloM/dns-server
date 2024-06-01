@@ -19,6 +19,7 @@ class Question:
                          + self.record_type.to_bytes(2, byteorder='big')
                          + self.record_class.to_bytes(2, byteorder='big')
                          )
+        self.question += b'\x00'
 
         return self.question
 
