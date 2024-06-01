@@ -20,7 +20,7 @@ class Question:
         return self.question
 
     @classmethod
-    def from_bytes(cls, received_body):
+    def from_bytes(cls, received_body: bytes):
         reader = BytesIO(received_body)
         url = cls.decode_name_simple(reader)
         data = reader.read(4)

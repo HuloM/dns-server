@@ -14,8 +14,6 @@ def main():
 
             received_header = buf[:12]
             received_body = buf[12:]
-            print(received_header)
-            print(received_body)
             response = dns_packet.construct_dns(received_header, received_body)
 
             udp_socket.sendto(response, source)
