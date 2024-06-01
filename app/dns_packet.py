@@ -56,7 +56,7 @@ class RCode(int, Enum):
     responses from an authoritative name
     server, this code signifies that the
     domain name referenced in the query does
-    not exist.
+    not exist.s
     """
     NAME_ERROR     = 3
 
