@@ -52,7 +52,7 @@ class Answer:
         self.answer += self.length.to_bytes(2, byteorder='big')
 
         ip = ipaddress.ip_address(self.rdata)
-        print(ip)
+        print(int(ip).to_bytes(4, byteorder='big'))
         self.answer += int(ip).to_bytes(4, byteorder='big')
 
         return self.answer
