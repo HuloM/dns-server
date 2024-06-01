@@ -27,7 +27,7 @@ def construct_dns(received_header: bytes, received_body: bytes):
     ).to_bytes()
 
     question = Question.from_bytes(received_body)
-    print(question)
+    # print(question)
     query_url = 'google.com'
     dns_pkt += Question(url          = query_url,
                         record_type  = RecordType.A,
