@@ -14,7 +14,7 @@ def construct_dns(query_url: str, received: bytes):
     dns_pkt += Header(
         id       = header.id,
         qr       = True,
-        op_code  = header.op_code,
+        op_code  = OpCode.QUERY if header.op_code == 0 else OpCode.STATUS,
         aa       = False,
         tc       = False,
         rd       = header.rd,
