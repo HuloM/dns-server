@@ -30,6 +30,7 @@ class Question:
         data = reader.read(4)
         record_type, record_class = struct.unpack('>HH', data)
 
+        print(url)
         return cls(url, record_type, record_class)
 
     @staticmethod
